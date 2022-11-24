@@ -1,0 +1,94 @@
+version: '3.8'
+
+networks:
+  loki:
+
+services:
+  loki:
+    image: grafana/loki:2.6.0
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki/local-config.yaml
+    networks:
+      - loki
+
+  promtail:
+    image: grafana/promtail:2.6.0
+    volumes:
+      - /var/log:/var/log
+    command: -config.file=/etc/promtail/config.yml
+    networks:
+      - loki
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    networks:
+      - loki
+  server1:
+    image:  web-server
+    container_name:  web-server-1
+    restart: on-failure
+    networks:
+      - loki
+    environment:
+      ROCKET_PORT: '3721'
+    ports:
+      - "3721:3721"
+
+  server2:
+    image: web-server
+    container_name: web-server-2
+    restart: on-failure
+    networks:
+      - loki
+    environment:
+      ROCKET_PORT: '3722'
+    ports:
+      - "3722:3722"
+  server3:
+    image: web-server
+    container_name: web-server-3
+    restart: on-failure
+    networks:
+      - loki
+    environment:
+      ROCKET_PORT: '3723'
+    ports:
+      - "3723:3723"
+  server4:
+    image: web-server
+    container_name: web-server-4
+    restart: on-failure
+    networks:
+      - loki
+    environment:
+      ROCKET_PORT: '3724'
+    ports:
+      - "3724:3724"
+  server5:
+    image: web-server
+    container_name: web-server-5
+    restart: on-failure
+    networks:
+      - loki
+    environment:
+      ROCKET_PORT: '3725'
+    ports:
+      - "3725:3725"
+  prometheus:
+    image: prom/prometheus
+    restart: always
+    volumes:
+      - ./prometheus:/etc/prometheus/
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+    ports:
+      - 9090:9090
+    networks:
+      - loki
+

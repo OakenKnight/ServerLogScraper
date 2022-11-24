@@ -1,0 +1,37 @@
+[
+  {
+    "ic_node" : "sq6zd",
+    "dc" : "dc1",
+    "ic_subnet" : "subnet1",
+    "ipv6" : "log-generator-1",
+    "port" : "3721"
+  },
+  {
+    "ic_node" : "sq6zd",
+    "dc" : "dc1",
+    "ic_subnet" : "subnet1",
+    "ipv6" : "log-generator-1",
+    "port" : "3722"
+  },
+  {
+    "ic_node" : "AAAA",
+    "dc" : "dc2",
+    "ic_subnet" : "subnet2",
+    "ipv6" : "log-generator-2",
+    "port": "3723"
+  },
+  {
+    "ic_node" : "phon",
+    "dc" : "dc2",
+    "ic_subnet" : "subnet4",
+    "ipv6" : "log-LOOOOOOLLLL-4",
+    "port" : "3724"
+  },
+  {
+    "ic_node" : "fjlvuj",
+    "dc" : "dc3",
+    "ic_subnet" : "subnet5",
+    "ipv6" : "log-generator-5",
+    "port" : "3725"
+  }
+]
